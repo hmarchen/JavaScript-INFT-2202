@@ -17,6 +17,31 @@ console.log("script ran")
 
 const mainContainer = document.querySelector(".main-container")
 mainContainer.addEventListener("click", (event) => {console.log("box " + event.target.classList[2] + " was clicked!");
- event.target.innerText = " X";});
+if (playerTurn == 'X') {
+    event.target.innerText = "X";
+    playerTurn = 'O';
+}
+else if (playerTurn == 'O'){
+    event.target.innerText = 'O'
+    playerTurn ='X';
+};
+    checkForWinner()
+});
+ // Initialize a new vairable called player to keep track of who's turn it is
+ playerTurn = 'X';
+ 
+ 
+ // Fetch the element with a class name of main-confiner and store it inside of
+ // a variable called mainContainer
+ 
+ const squares = document.querySelectorAll(".box");
 
-const playerTurn = 'X';
+ function checkForWinner(event){
+    // console.log(squares);
+    // console.log(squares[1].innerText);
+    if (squares[0].innerText == "X" &&
+        squares[1].innerText == "X" &&
+        squares[2].innerHTML == "X"){
+           alert("X won!")
+       }
+ }
