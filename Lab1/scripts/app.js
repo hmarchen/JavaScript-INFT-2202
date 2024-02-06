@@ -2,6 +2,9 @@ const innerBody = document.querySelector(".container");
 const navbar = document.querySelector(".navbar");
 const filePath = window.location.pathname;
 console.log(filePath);
+//Using only JavaScript change the Products link found in the Navbar above to Interests.
+const productsLabel = document.getElementsByClassName('Products');
+productsLabel[0].innerText = "Interests";
 
 navbar.addEventListener("click", (event) => {console.log(event.target.classList[1] + " was clicked")})
 
@@ -42,4 +45,12 @@ if (filePath == '/product.html'){
     let nameOfTheBook3 = document.createElement('h2');
     nameOfTheBook3.textContent = "Game series S.T.A.L.K.E.R";
     innerBody.appendChild(nameOfTheBook3);
+}
+if (filePath == '/services.html') {
+    let pdf = document.createElement('embed');
+    pdf.src = "./Resume Marchenko Hlib.pdf";
+    pdf.width = "1300";
+    pdf.height = "700";
+    pdf.type = "application/pdf";
+    innerBody.appendChild(pdf);
 }
