@@ -1,0 +1,52 @@
+body {
+    background: linear-gradient(0deg, #5dd6cf 0%, #de35ec 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.container {
+    display: grid;
+    align-items: center; 
+    grid-template-columns: 0fr 1fr 1fr;
+    column-gap: 5px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+
+.greeter {
+    color: aliceblue;
+}
+
+.text {
+	font-family: "Yanone Kaffeesatz";
+	font-size: 100px;
+	display: flex;
+	position: absolute;
+	/* bottom: 20vh; */
+	left: 50%;
+	transform: translateX(-50%);
+	user-select: none;
+    font-size: 72px;
+    background: -webkit-linear-gradient(#94fffb , #f870ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+img
+{ 
+	vertical-align: middle;
+	width: 150px;
+}
+
+h2 {
+    display: flex;
+    align-items: right;
+    background: -webkit-linear-gradient(#ffffff 1%, #000000 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

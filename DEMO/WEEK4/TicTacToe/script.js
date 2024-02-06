@@ -37,6 +37,7 @@ else if (playerTurn == 'O'){
  const squares = document.querySelectorAll(".box");
 
  function checkForWinner(event){
+    cons t = document.getElementById
     // console.log(squares);
     // console.log(squares[1].innerText);
     if (squares[0].innerText == "X" &&
