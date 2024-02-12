@@ -6,6 +6,7 @@ Date: 06 Feb 2024
 Description: app.js file responsible for proper logic and text insertion using DOM manipulations.
  */
 //Declaring the constants later used in the code
+console.log("uyfyfy");
 const innerBody = document.querySelector(".container");
 const mainBody = document.getElementsByTagName("body");
 const navList = document.getElementById('nav-bar');
