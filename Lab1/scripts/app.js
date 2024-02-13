@@ -30,7 +30,7 @@ navList.insertBefore(humanResources, navList.children[4]);
 
 console.log(filePath);
 // Inserts different contents depending on file path (name of the file)
-if (filePath == '/index.html'){
+if (filePath.includes('/index.html')){
 window.location.replace("/home.html");
 }
 // home page with greeter ;)
