@@ -28,7 +28,7 @@ humanResources.appendChild(humanResourcesAhref);
 
 navList.insertBefore(humanResources, navList.children[4]);
 
-
+console.log(filePath);
 // Inserts different contents depending on file path (name of the file)
 if (filePath == '/index.html'){
 window.location.replace("/home.html");
