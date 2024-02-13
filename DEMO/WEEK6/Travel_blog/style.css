@@ -1,0 +1,25 @@
+#navbar {
+    border: 3px solid blue;
+    background-color: blue;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+#navbar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#navbar li {
+    display: inline;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+#navbar li:hover {
+    background-color: green;
+    border-radius: 15px;
+    padding: 5px;
+}
