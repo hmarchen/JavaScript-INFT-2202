@@ -45,14 +45,14 @@ $("ul#nav-bar").last().after($('<div>').addClass('text-right nav-item').attr('id
 
 // Adds link for login page
 const loginPage = $('<li>').addClass('nav-item');
-const loginPageA = $('<a>').addClass('nav-link').text('Login').attr('href', '../login.html');
+const loginPageA = $('<a>').addClass('nav-link').text('Login').attr('href', './login.html');
 loginPage.append(loginPageA);
 
 $("li.nav-item").last().after(loginPage);
 
 // As well as registrational page
 const RegisterPage = $('<li>').addClass('nav-item');
-const RegisterPageA = $('<a>').addClass('nav-link').text('Register').attr('href', '../register.html');
+const RegisterPageA = $('<a>').addClass('nav-link').text('Register').attr('href', './register.html');
 RegisterPage.append(RegisterPageA);
 
 $("li.nav-item").last().after(RegisterPage);
