@@ -5,6 +5,7 @@ Filename: app.js
 Date: 21 Feb 2024
 Description: app.js file responsible for proper logic and text insertion using DOM manipulations.
  */
+
 //Declaring the constants later used in the code
 console.log("ඞ");
 const innerBody = document.querySelector(".container");
@@ -28,13 +29,28 @@ humanResources.appendChild(humanResourcesAhref);
 
 navList.insertBefore(humanResources, navList.children[4]);
 
+// User class for Lab2 (created after validation)
+class User {
+  constructor(firstName, lastName, username, email, password) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.username = username;
+      this.email = email;
+      this.password = password;
+  }
+}
 
+// Adds logout functionality (erases user's name from nav bar)
+$("ul#nav-bar").last().after($('<div>').addClass('text-right nav-item').attr('id', "logout").append($('<h>').addClass('textWhite').text('| logout').attr('onclick', "$('#display').remove()")));
+
+// Adds link for login page
 const loginPage = $('<li>').addClass('nav-item');
 const loginPageA = $('<a>').addClass('nav-link').text('Login').attr('href', '../login.html');
 loginPage.append(loginPageA);
 
 $("li.nav-item").last().after(loginPage);
 
+// As well as registrational page
 const RegisterPage = $('<li>').addClass('nav-item');
 const RegisterPageA = $('<a>').addClass('nav-link').text('Register').attr('href', '../register.html');
 RegisterPage.append(RegisterPageA);
@@ -211,33 +227,28 @@ if (filePath == '/contact.html') {
     setTimeout(() => {
         window.location.replace('/home.html');
     }, "3000");
-    event.preventDefault();});
+ event.preventDefault();});
 
 }
 
+// Login page, inserts client's username inside the nav bar
 if(filePath == '/login.html') {
     $('.container').html(`
     <div class="row justify-content-center">
     <div class="col-8">
-  <form>
-  <h2>Login form</h2>
+  <form id="login_form">
+  <h2 class="mb-5">Login form</h2>
   <div class="form-outline mb-4">
-  <label class="form-label mt-5" for="form2Example1">Email address</label>
-    <input type="email" id="form2Example1" class="form-control" autocomplete="off"/>
+
+    <input type="text" id="l_username" name="l_username" class="form-control" autocomplete="off" placeholder="Username"/>
   </div>
 
-  
   <div class="form-outline mb-4">
-  <label class="form-label" for="form2Example2">Password</label>
-    <input type="password" id="form2Example2" class="form-control" autocomplete="off"/>
+    <input type="password" id="l_password" name="l_password" class="form-control" autocomplete="off" placeholder="Password"/>
   </div>
 
- 
-
-
-  
   <div class="row justify-content-center">
-  <button type="button" class="btn btn-primary btn-block mb-4 col-4">Sign in</button>
+  <button type="submit" class="btn btn-primary btn-block mb-4 col-4">Sign in</button>
   </div>
   
   <div class="text-center">
@@ -245,40 +256,64 @@ if(filePath == '/login.html') {
   </div>
 </div>
     `);
+    $("#login_form").on('submit', (e) => {
+        let username = $("#l_username").val();
+        let password = $('#l_password').val();
+        e.preventDefault();
+        $('#display').remove()
+        if (!password == '' || !password == null) {
+        console.log('||' + $("#l_username").val());
+        
+        displayNameD = $("<div>").html(`
+             <div id="display" class="text-right">
+             <h1 class="text3">`+username+`</h1>
+                </div>
+        `)
+
+        $('#logout').last().before(displayNameD);
+        }
+    })
 }
+
+// Registration page, creates user object after validating all fields, and cleans the form
 if(filePath == '/register.html') {
     $('.container').html(`
     <div class="row justify-content-center">
     <div class="col-8">
-  <form>
+  <form id="register_form">
   <h2>Register form</h2>
   <div class="row">
     <div class="col">
-      <label class="form-label" for="form1">First Name</label>
-    <input type="email" id="form1" class="form-control" autocomplete="off"/>
+      <label class="form-label text3" for="form1">First Name</label>
+    <input type="text" id="first_name" class="form-control" autocomplete="off"/>
     </div>
     <div class="col">
-      <label class="form-label" for="form1">Last Name</label>
-    <input type="email" id="form1" class="form-control" autocomplete="off"/>
+      <label class="form-label text3" for="form1">Last Name</label>
+    <input type="text" id="last_name" class="form-control" autocomplete="off"/>
     </div>
   </div>
   <div class="form-outline">
-  <label class="form-label " for="form2">Email address</label>
-    <input type="email" id="form2" class="form-control" autocomplete="off"/>
+  <label class="form-label text3" for="form2">Email address</label>
+    <input type="email" id="email" class="form-control" autocomplete="off"/>
   </div>
 
   
+  <div class="form-outline">
+  <label class="form-label text3" for="form3">Password</label>
+    <input type="password" id="r_password" class="form-control" autocomplete="off"/>
+  </div>
+
   <div class="form-outline mb-4">
-  <label class="form-label" for="form3">Password</label>
-    <input type="password" id="form3" class="form-control" autocomplete="off"/>
+  <label class="form-label text3" for="form3">Confirm Password</label>
+    <input type="password" id="c_password" class="form-control" autocomplete="off"/>
   </div>
 
  
-
+<div class="error" id="ErrorMessage"></div> 
 
   
   <div class="row justify-content-center mb-5">
-  <button type="button" class="btn btn-primary btn-block col-4">Sign up</button>
+  <button type="submit" class="btn btn-primary btn-block col-4">Sign up</button>
   </div>
   
   <div class="text-center">
@@ -286,6 +321,65 @@ if(filePath == '/register.html') {
   </div>
 </div>
     `);
+
+    $('#register_form').on('submit', e => {
+	    let firstName = $('#first_name').val();
+	    let lastName = $('#last_name').val();
+	    let email = $('#email').val();
+	    let password = $('#r_password').val();
+	    let con_password = $('#c_password').val();
+	    let Errors = [];
+	    e.preventDefault();
+      // Validation
+      // 
+      // Every exception gets stored in Errors array
+	    if (firstName == '' || firstName == null) {
+		Errors.push('Please enter first name');
+	    }
+	    else if (firstName.length < 2 ) {
+		Errors.push('First name must be more than 2 characters');
+	    }
+	    if (lastName == '' || lastName == null) {
+		Errors.push('Please enter last name');
+	    }
+	    else if (lastName.length < 2 ) {
+		Errors.push('Last name must be more than 2 characters');
+	    }
+	    if (email == '' || email == null) {
+		Errors.push('Please enter email');
+	    }
+	    else if (email.length < 8 ) {
+		Errors.push('Email must be more than 8 characters');
+	    }
+	    if (password == '' || password == null) {
+		Errors.push('Please enter password');
+	    }
+	    else if (password.length < 6 ) {
+		Errors.push('Password must be more than 6 characters');
+	    }
+	    if (con_password == '' || con_password == null) {
+		Errors.push('Please retype password');
+	    }
+	    else if (password !== con_password) {
+		Errors.push('Passwords must match each other');
+	    }
+      $('#ErrorMessage').html(Errors.join(', <br>'));
+
+      // If validation is successful, create object type User
+      if (Errors.length == 0){
+        let username = firstName.charAt(0) + lastName;
+        const newUser = new User(firstName, lastName, username, email, password);
+        // display result in console
+        console.log(newUser);
+
+        //clean the form
+        $('#first_name').val('');
+        $('#last_name').val('');
+        $('#email').val('');
+        $('#r_password').val('');
+        $('#c_password').val('');
+      }
+    })
 }
 
 
