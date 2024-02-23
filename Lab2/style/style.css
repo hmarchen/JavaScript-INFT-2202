@@ -56,11 +56,17 @@ body {
 .text3 {
     font-family: "Yanone Kaffeesatz";
     margin-right: auto;
-    font-size: 30px;
+    margin-top: 8px;
+    font-size: 25px;
 	user-select: none;
-    background: -webkit-linear-gradient(270deg, #94fffb, #f870ff );
+    background: -webkit-linear-gradient(270deg, #94fffb, #f86bff 40px);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;   
+}
+.textWhite{
+    color: rgb(169, 169, 169);
+    font-weight:500;
+    cursor: pointer;
 }
 .img
 { 
@@ -90,4 +96,10 @@ h2 {
 
 .navbar-collapse {   
     text-align: right;
+}
+
+.error {
+    color: red;
+    -webkit-text-stroke-width: 0.1px;
+    -webkit-text-stroke-color: black;
 }
