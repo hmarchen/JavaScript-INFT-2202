@@ -26,11 +26,10 @@ if(window.location.pathname == '/blog.html') {
       blog_paragraph = jsonResults[i].body;
       blog_image = jsonImages.hits[i].webformatURL;
       var blogCard = `
-  <div class="hidden d-flex card shadow-0 m-2" style="width: 48%">
+  <div class="hidden d-flex card shadow-0 m-2" style="width: 48%; max-height: 80%">
   <div class="bg-image ripple" data-mdb-ripple-color="light">
-    <img src="${blog_image}" class="img-fluid" style="width:80%"/>
+    <img src="${blog_image}" class="img-fluid blog-image" style="width:1000%"/>
     <a href="#!">
-      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
     </a>
   </div>
 
@@ -39,10 +38,7 @@ if(window.location.pathname == '/blog.html') {
     <p class="card-text">
     ${blog_paragraph}
     </p>
-
-
   </div>
-</div>
   `;
 
       $('.blog-main').append(blogCard);
