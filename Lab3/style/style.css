@@ -14,7 +14,7 @@ body {
 .container { 
     display: grid;
     column-gap: 5px;    
-    place-items: center;
+    /* place-items: center; */
     min-height: 81.2vh;
     }
 .blog-main {
@@ -119,4 +119,8 @@ h2 {
 }
 .card {
     min-block-size: 250px;
+}
+.blog-image {
+    min-height: 200px;
+    max-height: 200px;
 }

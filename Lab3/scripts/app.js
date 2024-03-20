@@ -57,6 +57,13 @@ RegisterPage.append(RegisterPageA);
 
 $("li.nav-item").last().after(RegisterPage);
 
+// As well as blog page
+const BlogPage = $('<li>').addClass('nav-item');
+const BlogPageA = $('<a>').addClass('nav-link').text('Blog').attr('href', './blog.html');
+BlogPage.append(BlogPageA);
+
+$("li.nav-item").last().after(BlogPage);
+
 console.log(filePath);
 // Inserts different contents depending on file path (name of the file)
 if (filePath.includes('/index.html')){
