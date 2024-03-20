@@ -1,11 +1,18 @@
+/* 
+Author: Hlib Marchenko
+ID: 100901448
+Filename: blog.js
+Date: 20 Mar 2024
+Description: blog.js file responsible for proper logic and display of the blog page.
+ */
 var blog_image = "";
 var blog_header = "";
 var blog_paragraph = "";
 
-if(window.location.pathname == '/blog.html') { 
+if(filePath == 'blog.html') { 
   (async () => {
   let BlogList = await fetch(
-    // URL: for ICE -> Store user input in variable called 
+    // Fetching text data from provided source
 
     `https://jsonplaceholder.typicode.com/posts?limit=20&offset=0`, {
       method: "GET"
@@ -13,18 +20,21 @@ if(window.location.pathname == '/blog.html') {
 
     );
     let BlogImages = await fetch(
-      
+      // Fetching pictures from pixabay using obtained API key
       `https://pixabay.com/api/?key=42970270-5c418c11121e28ec5bd2aa090&q=philosophy&image_type=photo&pretty=true&orientation=horizontal`,
       {method: "GET"},
 
     )
     var jsonImages = await BlogImages.json();
     var jsonResults = await BlogList.json();
+    // Implement for loop to display all 20 blog posts
     for (let i = 0; i < 20; i++)
     {
+      // Using only required segments of json
       blog_header = jsonResults[i].title;
       blog_paragraph = jsonResults[i].body;
       blog_image = jsonImages.hits[i].webformatURL;
+      // Implementing card layout, with flex properties
       var blogCard = `
   <div class="hidden d-flex card shadow-0 m-2" style="width: 48%; max-height: 80%">
   <div class="bg-image ripple" data-mdb-ripple-color="light">
@@ -56,7 +66,7 @@ if(window.location.pathname == '/blog.html') {
       }
       });
   });
-
+// Observe all the elements of class hidden
     const hiddenElements = $('.hidden');
     hiddenElements.each((index, el) => observer.observe(el));
   })();

@@ -12,7 +12,8 @@ const innerBody = document.querySelector(".container");
 const mainBody = document.getElementsByTagName("body");
 const navList = document.getElementById('nav-bar');
 const navbar = document.querySelector(".navbar");
-const filePath = window.location.pathname;
+const parts = window.location.pathname.split('/');
+const filePath = parts.pop() || parts.pop();  
 
 //Using only JavaScript change the Products link found in the Navbar above to Interests.
 const productsLabel = document.getElementsByClassName('Products');
@@ -66,11 +67,11 @@ $("li.nav-item").last().after(BlogPage);
 
 console.log(filePath);
 // Inserts different contents depending on file path (name of the file)
-if (filePath.includes('/index.html')){
-window.location.replace('/home.html');
+if (filePath.includes('index.html')){
+window.location.replace('home.html');
 }
 // home page with greeter ;)
-if (filePath == '/home.html'){
+if (filePath == 'home.html'){
     let greater = document.createElement('h1');
     let pig = document.createElement('img');
     let div1 = document.createElement('div');
@@ -83,7 +84,7 @@ if (filePath == '/home.html'){
 }
 
 // product page (later Interests) with 3 of my favorite pieces of media
-if (filePath == '/product.html'){
+if (filePath == 'product.html'){
 
     document.getElementsByTagName('title')[0].innerText = "Interests";
     let br = document.createElement('br');
@@ -136,7 +137,7 @@ if (filePath == '/product.html'){
 }
 
 // services page with embedded pdf that represents my resume
-if (filePath == '/services.html') {
+if (filePath == 'services.html') {
     let pdf = document.createElement('embed');
     pdf.src = "../images/Resume_Marchenko_Hlib.pdf";
     pdf.width = "1300";
@@ -146,7 +147,7 @@ if (filePath == '/services.html') {
 }
 
 // about page, with short paragraph about myself
-if (filePath == '/about.html') {
+if (filePath == 'about.html') {
     innerBody.classList.add('row');
     let picture1 = document.createElement('img');
     let aboutMe = document.createElement('h3');
@@ -164,7 +165,7 @@ if (filePath == '/about.html') {
 }
 
 // statement responsible for displaying contact form for user to fill
-if (filePath == '/contact.html') {
+if (filePath == 'contact.html') {
     let br = document.createElement('br');
     let form = document.createElement('form');
     let div1 = document.createElement('div');
@@ -239,7 +240,7 @@ if (filePath == '/contact.html') {
 }
 
 // Login page, inserts client's username inside the nav bar
-if(filePath == '/login.html') {
+if(filePath == 'login.html') {
     $('.container').html(`
     <div class="row justify-content-center">
     <div class="col-8">
@@ -283,7 +284,7 @@ if(filePath == '/login.html') {
 }
 
 // Registration page, creates user object after validating all fields, and cleans the form
-if(filePath == '/register.html') {
+if(filePath == 'register.html') {
     $('.container').html(`
     <div class="row justify-content-center">
     <div class="col-8">
