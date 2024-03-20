@@ -67,6 +67,9 @@ $("li.nav-item").last().after(BlogPage);
 
 console.log(filePath);
 // Inserts different contents depending on file path (name of the file)
+if (filePath.includes('Lab3')){
+  window.location.replace('home.html');
+  }
 if (filePath.includes('index.html')){
 window.location.replace('home.html');
 }
@@ -75,7 +78,7 @@ if (filePath == 'home.html'){
     let greater = document.createElement('h1');
     let pig = document.createElement('img');
     let div1 = document.createElement('div');
-    pig.src = '../images/welcome.gif';
+    pig.src = './images/welcome.gif';
     pig.className = 'img welcome';
     div1.appendChild(pig);
     greater.textContent = "Hello and Welcome User";
@@ -103,11 +106,11 @@ if (filePath == 'product.html'){
     
     header.innerText = 'Favorite media';
     header.className = 'text2';
-    picture1.src = '../images/book.png';
+    picture1.src = './images/book.png';
     picture1.alt = 'book';
-    picture2.src = '../images/solaris.jpg';
+    picture2.src = './images/solaris.jpg';
     picture2.alt = 'movie';
-    picture3.src = '../images/stalker-md.jpg';
+    picture3.src = './images/stalker-md.jpg';
     picture3.alt = 'game';
     div1.className = 'row';
     div2.className = 'row';
@@ -139,7 +142,7 @@ if (filePath == 'product.html'){
 // services page with embedded pdf that represents my resume
 if (filePath == 'services.html') {
     let pdf = document.createElement('embed');
-    pdf.src = "../images/Resume_Marchenko_Hlib.pdf";
+    pdf.src = "./images/Resume_Marchenko_Hlib.pdf";
     pdf.width = "1300";
     pdf.height = "654.4";
     pdf.type = "application/pdf";
@@ -155,7 +158,7 @@ if (filePath == 'about.html') {
     let div2 = document.createElement('div');
     div1.className = 'col-sm-4';
     div2.className = 'col-7 text2';
-    picture1.src = '../images/1701719333487.jpg';
+    picture1.src = './images/1701719333487.jpg';
     picture1.alt = 'Me';
     picture1.className = 'img';
     aboutMe.innerText = 'I am passionate about technology and, in my free time, I explore the world of Linux, conduct research on embedded technology, RF frequency analyzers and engage in ethical hacking.'
