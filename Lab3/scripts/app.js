@@ -137,6 +137,7 @@ if (filePath == 'product.html'){
     innerBody.appendChild(div2);
     innerBody.appendChild(br3);
     innerBody.appendChild(div3);
+    
 }
 
 // services page with embedded pdf that represents my resume

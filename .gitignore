@@ -2,3 +2,4 @@
 *.DS_Store
 *.mov
 Lab.*.pdf
+DEMO/*/*/*/node_modules
