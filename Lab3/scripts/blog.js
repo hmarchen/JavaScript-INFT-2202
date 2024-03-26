@@ -55,6 +55,10 @@ if(filePath == 'blog.html') {
   }
   // Utilizes observer to truck down elements that are hidden,
   // and smoothly displaying after they enter the screen
+  let array = ["apple", "orange"];
+  array.forEach((string) => {
+    console.log(array[string])
+  })
   const observer = new IntersectionObserver( (entries) => {
     entries.forEach( (entry) => { 
         // console.log(entry)
