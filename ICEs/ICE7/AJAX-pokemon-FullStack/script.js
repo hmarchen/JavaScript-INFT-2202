@@ -1,9 +1,14 @@
 const express = require("express");
 const router = express.Router();
+const bodyParser = require("body-parser");
 
 const pokemonRouter = require("./routes/pokemon");
 
 const app = express();
+
+// Middle ware execute function while request in transit
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 app.set("views", "./views");
 
