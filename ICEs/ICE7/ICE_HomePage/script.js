@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
 
-const pokemonRouter = require("./routes/pokemon");
+const pokemonRouter = require("./routes/iceRouter");
 
 const app = express();
 
@@ -14,9 +14,7 @@ app.set("views", "./views");
 
 app.set("view engine", "ejs");
 
-app.get("/hello", (req, res) => res.send("hello there"));
-
-app.use("/", require("./routes/pokemon"))
+app.use("/", pokemonRouter);
 
 app.listen(3500, () => {
     console.log("express server running on 3500...")
