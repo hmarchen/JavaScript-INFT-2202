@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Pokemons</title>
+</head>
+<body>
+    <%- include('navbar.ejs') %>
+    <h1>All Pokemons</h1>
+    <ul>
+        <% pokemons.forEach(function(pokemon) { %>
+            <li>name: <%= pokemon.name %><br>height: <%= pokemon.height %> <br>photo: <img src="<%= pokemon.photo %> " ></li>
+        <% }); %>
+    </ul>
+</body>
+</html>
