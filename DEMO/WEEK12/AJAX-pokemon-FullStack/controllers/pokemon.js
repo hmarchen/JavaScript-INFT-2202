@@ -65,10 +65,28 @@ async function savePokemonToCollection(req, res) {
       }).catch(function (err) {console.log(err) });
   }
 
+  async function getMyCollection(req, res) {
+    try {
+        const MyCollection = await Pokemon.find({});
+            res.render("mySavedCollection.ejs", {MyCollection});
+
+    }catch (err) {console.error("error with getting saved pokemons")}
+  }
+
+  async function deletePokemonByID(req, req) {
+    try {
+        const id = req.params.idOfPokemond;
+        await Pokemon.deleteOne({_id: id });
+        res.redirect("/savedCollection");
+    } catch (err) { console.log(err)};
+  }
+
 module.exports = {
     greetPokemon,
     displayHomePage,
     searchPokemon,
     savePokemonToCollection,
     getAllPokemons,
+    getMyCollection,
+    deletePokemonByID,
 }

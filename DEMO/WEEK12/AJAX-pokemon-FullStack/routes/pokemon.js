@@ -9,7 +9,9 @@ router.get("/", pokemonController.displayHomePage);
 router.post("/search", pokemonController.searchPokemon);
 router.post("/savePokemon", pokemonController.savePokemonToCollection);
 router.get("/pokemonList", pokemonController.getAllPokemons);
-
+router.get("/savedCollection", pokemonController.getMyCollection);
+// :idOfPokemon = req.params.idOfPokemon
+router.post("/deletePokemon/:idOfPokemon", pokemonController.deletePokemonByID);
 
 
 // Share the router with others

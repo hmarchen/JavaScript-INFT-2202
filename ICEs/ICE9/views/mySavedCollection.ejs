@@ -1,0 +1,23 @@
+<%- include("partials/header.ejs") %>
+
+  <ul>
+    <% MyCollection.forEach(pokemon=> { %>
+      <li>
+        <h3>Name: <%= pokemon.name %>
+        </h3>
+        <h4>Heigh: <%= pokemon.height %>
+        </h4>
+        <img src="<%= pokemon.photo %> ">
+        <form action="/deletePokemon/<%= pokemon._id %>" method="POST">
+          <input type="submit" value="Delete Pokemon">
+        </form>
+        <form action="/updatePokemon/<%= pokemon._id %> " method="POST">
+          <label for="name">Name:</label><br>
+          <input type="text" id="name" name="name" value="<%= pokemon.name %>"><br>
+          <input type="submit" value="Update Name">
+        </form>
+      </li>
+      <% }); %>
+  </ul>
+
+  <%- include("partials/footer.ejs") %>
