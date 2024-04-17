@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
 const DBConfig = require("./config/database");
+const session = require("express-session");
 
 const pokemonRouter = require("./routes/pokemon");
 
@@ -13,7 +14,7 @@ require("dotenv").config();
 DBConfig.connectToDatabase();
 
 // Middle ware execute function while request in transit
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.set("views", "./views");
@@ -25,6 +26,19 @@ app.get("/hello", (req, res) => res.send("hello there"));
 
 app.use("/", require("./routes/pokemon"));
 
+app.use(session({
+    secret: "pokemon",
+    cookie: { myCookie: "123" },
+}))
+
+app.use(function (req, res, next) {
+    if (res.locals.user) {
+        console.log("user is logged in");
+    }
+    else {
+        console.log("user is logged out");
+    }
+})
 
 
 app.listen(3500, () => {

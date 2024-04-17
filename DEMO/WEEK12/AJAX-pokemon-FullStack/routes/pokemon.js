@@ -12,6 +12,8 @@ router.get("/pokemonList", pokemonController.getAllPokemons);
 router.get("/savedCollection", pokemonController.getMyCollection);
 // :idOfPokemon = req.params.idOfPokemon
 router.post("/deletePokemon/:idOfPokemon", pokemonController.deletePokemonByID);
+router.get("/signUp", pokemonController.displaySignUpPage);
+router.post("/signUp", pokemonController.signUpUser);
 
 
 // Share the router with others
