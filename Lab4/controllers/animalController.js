@@ -1,17 +1,4 @@
-const Pokemon = require("../model/Animal");
-
-function greetPokemon(req, res) {
-
-    // Sample Data logic
-    //res.send("Hello Pokemon!");
-
-    const pokemon = {
-        name: "Pikachu",
-        type: "cute cheeks",
-        skills: "electricity"
-    }
-    res.render("greetPokemon.ejs", { pokemonDetails: pokemon });
-}
+const Animal = require("../model/Animal");
 
 
 function displayHomePage(req, res) {
@@ -21,119 +8,79 @@ function displayHomePage(req, res) {
 
 function displayForm(req, res) {
     //display home page
-    res.render("views/animals/entry-form.ejs", { title: 'Form' });
-}
-async function searchPokemon(req, res) {
-    // We need the data from the HTML form. The data is stored inside the request body when we send a POST request
-    const formData = req.body;
-    // console.log("Form Data:")
-    // console.log(formData);
-    // console.log("form submitted")
-    const { pokemonName } = formData;
-    //Line above is equivalent to const pokemonName = formData.pokemonName
-
-    const pokemonAPIResponse = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`
-    );
-
-    const pokemonDetails = await pokemonAPIResponse.json();
-    // console.log(pokemonName);
-    // console.log(pokemonDetails);
-    res.render("displayPokemon.ejs", { pokemon: pokemonDetails });
+    res.render("animals/entry-form.ejs", { title: 'Add animal to Database' });
 }
 
-// We want to import our Pokemon model so that we can communicate with the database
 
-
-async function savePokemonToCollection(req, res) {
+async function saveAnimalToCollection(req, res) {
     // Grab the form data
     const formData = req.body;
-    // Create a new pokemon in our database
-
+    // Create a new animal in our database
     try {
-        await Pokemon.create({
-            pokemonId: formData.pokemonId,
-            name: formData.pokemonName,
-            height: formData.pokemonHeight,
-            photo: formData.pokemonPhoto,
-        }).finally(res.redirect("/"));
+
+        await Animal.create({
+            zoo: formData.zoo,
+            scientificName: formData.scientificName,
+            commonName: formData.commonName,
+            givenName: formData.givenName,
+            gender: formData.gender,
+            dateOfBirth: formData.dateOfBirth,
+            age: formData.age,
+            isTransportable: formData.isTransportable,
+        }).finally(res.redirect("/animalList"));
     }
     catch (err) {
-        console.log(`Error in crating pokemon ${formData.pokemonName}`);
+        console.log(err);
+        console.log(`Error in crating animal ${formData.givenName}`);
         res.redirect("/");
     }
 };
 
-function getAllPokemons(req, res) {
-    Pokemon.find({}).then(function (pokemons) {
-        res.render('displayMyCollection.ejs', { pokemons: pokemons });
+// Query the database and display all animals
+function getAllAnimals(req, res) {
+    Animal.find({}).sort({ _id: -1 }).then(function (animals) {
+        res.render('animals/all-animals.ejs', { animals: animals, title: "All Animals" });
     }).catch(function (err) { console.log(err) });
 }
 
-async function getMyCollection(req, res) {
+// Delete animal from the database using id
+async function deleteAnimalByID(req, res) {
     try {
-        const MyCollection = await Pokemon.find({});
-        res.render("mySavedCollection.ejs", { MyCollection });
-
-    } catch (err) { console.error("error with getting saved pokemons") }
-}
-
-async function deletePokemonByID(req, req) {
-    try {
-        const id = req.params.idOfPokemond;
-        await Pokemon.deleteOne({ _id: id });
-        res.redirect("/savedCollection");
+        const id = req.params.idOfAnimal;
+        await Animal.deleteOne({ _id: id });
+        res.redirect("/animalList");
     } catch (err) { console.log(err) };
 }
 
-function displaySignUpPage(req, res) {
-    res.render("displaySignUpPage.ejs");
-}
-
-async function signUpUser(req, res) {
-
-    const formData = req.body;
+// Update animal in database using id and hidden variables
+async function updateAnimalByID(req, res) {
     try {
-        bcrypt.hash(formData.password, 10, function (err, hash) {
-            let newUser = new User({
-                firstName: formData.firstName,
-                lastName: formData.lastName,
-                userName: formData.userName,
-                email: formData.email,
-                password: formData.password,
-            });
-            newUser.save().then(() => console.log("User saved!"));
-            res.render("LoginPage.ejs");
-        });
-    } catch (err) {
-        console.log(err);
-        res.status(500).send(err);
-    }
-
+        const id = req.params.idOfAnimal;
+        var zoo = req.body.zoo;
+        var scientificName = req.body.scientificName;
+        var commonName = req.body.commonName;
+        var givenName = req.body.givenName;
+        var gender = req.body.gender;
+        var dateOfBirth = req.body.dateOfBirth;
+        var age = req.body.age;
+        var isTransportable = req.body.isTransportable;
+        await Animal.updateOne({ _id: id }, { $set: { "zoo": zoo, "scientificName": scientificName, "commonName": commonName, "givenName": givenName, "gender": gender, "dateOfBirth": dateOfBirth, "age": age, "isTransportable": isTransportable} });
+        res.redirect("/animalList");
+    } catch (err) { console.log(err) };
 }
+// Transfer hidden variables to Edit page
+function editAnimal(req, res) {
+    const formData = req.body; // Get form data from request
+    res.render('animals/edit-animal.ejs', { formData, title: "Edit Animal" }); // Render Form 2 with form data
+  }
 
-async function loginUser(req, res) {
-    const formData = req.body
-    try {
-        let user = User.findOne({ userName: formData.userName })
-
-        bcrypt.compare(formData.password, user.password, function (err, result) {
-            if (result == true) {
-                res.locals.user = user;
-                res.redirect("/");
-            }
-        })
-    } catch (err) { }
-}
-
+// Export for later use
 module.exports = {
     displayForm,
     displayHomePage,
-    searchPokemon,
-    savePokemonToCollection,
-    getAllPokemons,
-    getMyCollection,
-    deletePokemonByID,
-    signUpUser,
-    displaySignUpPage,
+    saveAnimalToCollection,
+    getAllAnimals,
+    deleteAnimalByID,
+    updateAnimalByID,
+    editAnimal,
 }
