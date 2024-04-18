@@ -1,3 +1,10 @@
+/* 
+Author: Hlib Marchenko
+ID: 100901448
+Filename: Controller
+Date: 18 Apr 2024
+Description: responsible for manipulations with database
+ */
 const Animal = require("../model/Animal");
 
 
