@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+// Create Animal Schema
 const animalSchema = new mongoose.Schema({
     // mongo adds its own ID to each record
     zoo: { type: String, required: true },
@@ -10,6 +10,8 @@ const animalSchema = new mongoose.Schema({
     dateOfBirth: { type: Date, required: true },
     age: { type: Number, required: true },
     isTransportable: { type: Boolean, required: true }
+}, {
+    collection: 'Animals'
 });
 
 

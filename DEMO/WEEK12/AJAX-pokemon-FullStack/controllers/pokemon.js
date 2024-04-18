@@ -75,7 +75,7 @@ async function getMyCollection(req, res) {
 
 async function deletePokemonByID(req, req) {
     try {
-        const id = req.params.idOfPokemond;
+        const id = req.params.idOfPokemon;
         await Pokemon.deleteOne({ _id: id });
         res.redirect("/savedCollection");
     } catch (err) { console.log(err) };
