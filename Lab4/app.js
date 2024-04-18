@@ -1,3 +1,10 @@
+/* 
+Author: Hlib Marchenko
+ID: 100901448
+Filename: app.js
+Date: 18 Apr 2024
+Description: app.js file responsible for proper logic.
+ */
 const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
