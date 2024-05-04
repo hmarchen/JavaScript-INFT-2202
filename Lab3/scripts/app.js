@@ -172,19 +172,6 @@ if (filePath == 'about.html') {
       </div>`
     )
     typedText(aboutMe)
-    // let picture1 = document.createElement('img');
-    // let aboutMe = document.createElement('h3');
-    // let div1 = document.createElement('div');
-    // let div2 = document.createElement('div');
-    // div1.className = 'col-sm-4';
-    // div2.className = 'col-7 text2';
-    // picture1.src = './images/1701719333487.jpg';
-    // picture1.alt = 'Me';
-    // picture1.className = 'img';
-    // aboutMe.innerText = 'I am passionate about technology and, in my free time, I explore the world of Linux, conduct research on embedded technology, RF frequency analyzers and engage in ethical hacking.'
-    // div1.appendChild(picture1);
-
-    // innerBody.append(div1, div2);
 }
 
 // statement responsible for displaying contact form for user to fill
