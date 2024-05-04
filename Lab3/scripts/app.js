@@ -161,7 +161,7 @@ if (filePath == 'about.html') {
     }
     setTimeout(() => typedText(text, i + 1), 50);
   }
-  let aboutMe = "I am passionate about technology and, in my free time, I explore the world of Linux, conduct research on embedded technology, RF frequency analyzers and engage in ethical hacking.";
+  let aboutMe = "I am passionate about technology and, in my free time, I explore the world of Linux, conduct research on embedded technology, RF frequency analyzers and engage in ethical hacking!";
   $('.container').html(
     `<div class="col-sm-4">
     <img src="./images/1701719333487.jpg" alt="Me" class="img">
