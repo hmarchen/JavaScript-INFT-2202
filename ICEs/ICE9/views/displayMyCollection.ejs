@@ -1,0 +1,8 @@
+    <%- include('partials/header.ejs') %>
+    <h1>All Pokemons</h1>
+    <ul>
+        <% pokemons.forEach(function(pokemon) { %>
+            <li>name: <%= pokemon.name %><br>height: <%= pokemon.height %> <br>photo: <img src="<%= pokemon.photo %> " ></li>
+        <% }); %>
+    </ul>
+    <%- include('partials/footer.ejs') %>
