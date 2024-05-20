@@ -1,0 +1,23 @@
+body {
+	/* border: 5px solid;
+	color: red; */
+}
+.main-container {
+	/* border: 2px solid blue;  */
+	display: grid;
+	height: 70vh;
+}
+.first-row, .second-row, .third-row {
+	
+	height: 70%;
+	display: flex;
+}
+.box {
+	border: 2px solid red;
+	width: 25%;
+	height: 100%;
+	margin: auto;
+	font-size: 60px;
+	text-align: center;
+}
+
